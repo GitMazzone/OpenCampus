@@ -12,7 +12,6 @@ var io = require('socket.io')(server);
 
 
 
-
 server.listen(port, function () {
   console.log("server running on port: " + port.toString())
 });
@@ -31,36 +30,6 @@ io.on('connection', function (socket) {
 
 
 });
-
-function getDirections(origin, destination, callback){
-  var options = {"url": directionsEndpoint,
-  qs:{"origin": origin,
-  "destination": destination,
-  "mode": "transit",
-  json:true,
-  "key":googleAPI}};
-
-  request.get(options, function(error, response, body) {
-    results = JSON.parse(body)    
-    if (results.status == "ZERO_RESULTS") {
-      callback({status: "error"})
-    } else {
-      console.log(results.routes[0].legs.length)
-      var duration = results.routes[0].legs[0].duration.text;
-      var distance = results.routes[0].legs[0].distance.text;
-
-      console.log(duration);
-      console.log(distance);
-      retObj = {}
-      retObj["distance"] = distance;
-      retObj["duration"] = duration;
-      retObj["directions"] = results.routes[0].legs[0].steps;
-      retObj["status"] = "OK";
-      callback(retObj);
-
-    }
-  });
-}
 
 
 

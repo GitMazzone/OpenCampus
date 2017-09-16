@@ -1,12 +1,15 @@
 var express = require('express')
 var request = require('request')
 var sessions = require("client-sessions");
-
+var mongo 
 var app = express()
 var port = process.env.PORT || 5000;
 var server = require('http').createServer(app);
 app.use(express.static('public'));
 var io = require('socket.io')(server);
+
+
+
 
 
 

@@ -97,5 +97,7 @@ function populateProjectsArea(projectList) {
 		 </div>
 		 </li>
 		`;
+
+		$(cardCollection).append(markup.toString());
 	})
 }

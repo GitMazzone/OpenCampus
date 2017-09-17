@@ -78,6 +78,10 @@ app.get("/confirmed", function(req, res) {
                };
 
               docClient.get(params, function(err, data) {
+                params = {
+                  TableName: 'User',
+                  Item: {'Email': req.openCookie.sess}
+                 };
                 if (err) {
                   console.log("Error", err);
 
@@ -87,6 +91,7 @@ app.get("/confirmed", function(req, res) {
                   console.log("Success", data.Item);
                   if (data.Item == undefined) {
                     //add entry
+                    
                     docClient.put(params, function(err, data) {
                       if (err) {
                         console.log("Error", err);

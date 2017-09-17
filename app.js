@@ -86,9 +86,19 @@ app.get("/confirmed", function(req, res) {
                 } else {
                   console.log("Success", data.Item);
                   if (data.Item == undefined) {
-                    res.send("Something went wrong")
-                  }
-                  if (data.Item.Email == req.openCookie.sess) {
+                    //add entry
+                    docClient.put(params, function(err, data) {
+                      if (err) {
+                        console.log("Error", err);
+                        res.send("Please try that again. Something went wrong!");
+                        
+                      } else {
+                        console.log("Success", data);
+                        res.send("<script> window.location = '/' </script>");
+                        
+                      }
+                    });
+                  } else if (data.Item.Email == req.openCookie.sess) {
                     //existing
                     //do nothing
                     res.send("<script> window.location = './landing.html' </script>");

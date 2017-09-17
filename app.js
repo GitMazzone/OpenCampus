@@ -106,7 +106,7 @@ app.get("/confirmed", function(req, res) {
                   } else if (data.Item.Email == req.openCookie.sess) {
                     //existing
                     //do nothing
-                    res.send("<script> window.location = './landing.html' </script>");
+                    res.send("<script> window.location = '/' </script>");
 
                   } else {
                     //add into db

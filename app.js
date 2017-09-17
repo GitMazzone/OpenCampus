@@ -34,15 +34,18 @@ app.get("/confirmed", function(req, res) {
 
     var code = req.query.code;
 
-    request.post("https://github.com/login/oauth/access_token",
-        {body:{
-            "client_id":client_id,
-            "client_secret":client_secret,
-            "code":code,
-            "accept":"json"
-        }
-        }, function(data) {
-            res.send(data);
+    var options = {
+      "method" : "POST",
+      "url" : "https://github.com/login/oauth/access_token",
+      form : {
+        "client_id":client_id,
+        "client_secret":client_secret,
+        "code":code,
+        "accept":"json"
+      }
+    }
+    request.post(options, function(err, response, body) {
+            res.send(body);
         });
    
 });

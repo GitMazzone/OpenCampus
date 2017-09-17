@@ -115,15 +115,19 @@ app.get("/confirmed", function(req, res) {
    
 });
 
+app.get("/registerUser", function(req, res) {
 
+
+}); 
 function createUser(user, callback) {
   var params = {
     TableName: 'User',
     Item: {'Email': user}
    };
-   docClient.put(params, callback(err, data));
+   docClient.put(params, callback);
 
 }
+
 
 
 function findUser(user, callback) {
@@ -131,7 +135,7 @@ function findUser(user, callback) {
     TableName: 'User',
     Key: {'Email': user}
    };
-   docClient.get(params, callback(err, data));
+   docClient.get(params, callback);
 
 }
 

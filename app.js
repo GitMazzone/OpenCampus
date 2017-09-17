@@ -55,7 +55,7 @@ app.get("/confirmed", function(req, res) {
             };
           
           request.get({
-            url:"https://api.github.com/user/emails", 
+            url:"https://api.github.com/user/", 
             headers:{
               name: 'User-Agent',
               value: 'Faliteren'

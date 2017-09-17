@@ -25,8 +25,13 @@ app.use(sessions({
   }));
 
 
-
-
+app.get("/isLoggedIn", function(req, res) {
+  if (req.openCookie.sess != null && req.openCookie.sess != undefined) {
+    res.send({"session":req.openCookie.sess});
+  } else {
+    res.send({"session":null});
+  }
+});
   
   
 app.get("/confirmed", function(req, res) {
@@ -58,12 +63,14 @@ app.get("/confirmed", function(req, res) {
             qs:qs, 
             json:true}, function (e, r, user) {
               console.log(user[0].email);
-              req.openCookie.user = user[0].email;
+              req.openCookie.sess = user[0].email;
+              res.send("<script> window.location = '/landing.html'</script>");
           })
         }
     });
    
 });
+
 
 
 

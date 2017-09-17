@@ -98,6 +98,6 @@ function populateProjectsArea(projectList) {
 		 </li>
 		`;
 
-		$(cardCollection).append(markup.toString());
+		$("#projectCollectionUL").append(markup.toString());
 	})
 }

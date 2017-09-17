@@ -28,3 +28,15 @@
 .step_one {
 	margin-top: 20%;
 }
+
+#progLangCheckboxesRow {
+	margin-bottom: 0;
+}
+
+#input-progLang label {
+	margin: 5px;
+}
+
+[type="checkbox"]+label {
+	padding-left: 25px;
+}

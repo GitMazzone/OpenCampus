@@ -16,13 +16,12 @@ $(document).ready(function() {
 
 function getUniversityName() {
   var universityName = document.getElementById("autocomplete-input-uniName").value;
-  console.log("Uni name: " + universityName);
   return universityName;
 }
 
+//TODO: now uses checkboxes
 function getProgrammingLanguage() {
-  var programmingLanguage = document.getElementById("autocomplete-input-progLang").value;
-  console.log("Programming language: " + programmingLanguage);
+  var programmingLanguage = document.getElementById("input-progLang").value;
   return programmingLanguage;
 }
 

@@ -1,5 +1,7 @@
 $(document).ready(function() {
-	
+	$("#submitButton").click(function() {
+		submitUserInfo();
+	})
 });
 
 
@@ -45,3 +47,8 @@ function submitUserInfo() {
 		console.log(data.status);
 	});
 }
+
+
+
+
+

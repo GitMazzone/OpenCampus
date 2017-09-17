@@ -49,16 +49,11 @@ app.get("/confirmed", function(req, res) {
           console.log(response);
           console.log(body.split("&")[0].split("=")[1]);
           var qs = {"access_token": body.split("&")[0].split("=")[1]};
-          var head = {
-              name: 'User-Agent',
-              value: 'Faliteren'
-            };
           
           request.get({
             url:"https://api.github.com/user/", 
             headers:{
-              name: 'User-Agent',
-              value: 'Open Campus'
+             'User-Agent':'Open Campus'
             }, 
             qs:qs, 
             json:true}, function (e, r, user) {

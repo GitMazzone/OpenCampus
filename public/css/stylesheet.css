@@ -2,3 +2,12 @@
   position: absolute;
   width: 93%;
 }
+
+.difficulty {
+	font-weight: bold;
+}
+
+.projMemberCard {
+	height: 150px;
+	width: 150px;
+}

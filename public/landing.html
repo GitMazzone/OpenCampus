@@ -15,10 +15,11 @@
 
   <!-- BEGIN CONTENT ROW -->
   <div class="row">
-  <div class="col l10">
+  <div class="col l12">
   
   <div class="row center valign-wrapper">
 
+    <!-- BEGIN LOGIN & SCHOOL SECTION -->
     <div class="col l4">
       <!-- GITHUB LOGIN BUTTON -->
       <a href="https://github.com/login/oauth/authorize?scope=user:email&client_id=8e29e22b346472922215" class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>Sign in with Github</a>
@@ -31,7 +32,7 @@
           <label for="autocomplete-input-uniName">Your university</label>
         </div>
       </div> <!-- END SCHOOL SEARCH-FIELD -->
-    </div>
+    </div> <!-- BEGIN LOGIN & SCHOOL SECTION -->
 
     <!-- BEGIN ABOUT YOU COLLECTION -->
     <div class="col l4">
@@ -99,27 +100,66 @@
 
     <!-- BEGIN PROJECTS COLLECTION -->
     <div class="col l4">
-      <ul class="collection">
+      <ul id="Collection">
+
+        <!-- BEGIN PROJECT CARD TEMPLATE -->
         <li class="collection-item projectPreviewCard" id="project1">
-          <div class="card blue-grey darken-1">
-            <div class="card-content white-text">
-              <span class="card-title" id="projectCardName">TV Seasons</span>
-              <p id="projectCardAbout">Provides upcoming air date of any TV show, as well as links to buy and stream past seasons.</p>
+          <div class="card ">
+            <div class="card-content">
+              <span class="card-title" id="projectCardName1">TV Seasons
+                <span id="projectCardUniversity1">@ UGA</span>
+                <span class="difficulty" id="projectCardDifficulty1">Intermediate</span>
+              </span>
+              <p id="projectCardAbout1">
+                Provides upcoming air date of any TV show, as well as links to buy and stream past seasons.</p>
+              <button data-target="projectModal1" class="btn modal-trigger">Expand</button>
             </div>
-            <div class="card-action" id="projectCardLanguages">
-              <div class="chip">
-                <img src="images/yuna.jpg" alt="Contact Person">
-                Jane Doe
+            <div class="card-action" id="projectCardLanguages1">
+              <div class="chip" id="project1languageChip1">
+                <img src="./resources/img/py-icon.ico" alt="Contact Person">
+                Python
+              </div>
+              <div class="chip" id="project1languageChip2">
+                <img src="./resources/img/html-icon.png" alt="Contact Person">
+                HTML
+              </div>
+              <div class="chip" id="project1languageChip3">
+                <img src="./resources/img/css-icon.png" alt="Contact Person">
+                CSS
               </div>
             </div>
           </div>
-        </li>
-        <li class="collection-item projectPreviewCard" id="project2">
-          
-        </li>
-        <li class="collection-item projectPreviewCard" id="project3">
-          
-        </li>
+        </li> <!-- END PROJECT CARD TEMPLATE -->
+        <!-- Modal Structure -->
+        <div id="projectModal1" class="modal">
+          <div class="modal-content">
+            <h4 id="projectModalHeader1">TV Seasons</h4>
+            <p id="projectModalUniversity1">@ UGA <span class="difficulty" 
+              id="projectModalDifficulty">Intermediate</span></p>
+            <p id="projectModalAbout1">
+            Provides upcoming air date of any TV show, as well as links to buy and stream past seasons.</p>
+            <!-- Project member card -->
+
+            <div class="card projMemberCard" id="modalProj1Member1"> <!-- Must change with project number -->
+              <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" src="./resources/img/py-icon.ico"> <!-- Use position language icon -->
+              </div>
+              <div class="card-content modalMember">
+                <span class="card-title activator grey-text text-darken-4" 
+                  id="">Michael</span>
+              </div>
+              <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">
+                  Card Title<i class="material-icons right">close</i></span>
+                <p>Here is some more information about this product that is only revealed once clicked on.</p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+          </div>
+        </div>
+
       </ul>
     </div> <!-- END PROJECTS COLLECTION -->
 

@@ -3,8 +3,7 @@ $(document).ready(function() {
 		console.log($(this).val());
 	});
 
-	$('#autocomplete-input-uniName').uniInput(function()){
+	$('#autocomplete-input-uniName').uniInput(function() {
 		console.log($(this).val());
 	});
 });
-

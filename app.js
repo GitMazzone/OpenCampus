@@ -20,9 +20,10 @@ var io = require('socket.io')(server);
 var client_id = "8e29e22b346472922215";
 var client_secret = "861a468b30cd055d1b531f8106cd7e6662a1b471";
 app.use(sessions({
-    secret: '034jfg939codeathelon9429', // should be a large unguessable string
-    duration: 24 * 60 * 60 * 1000, // how long the session will stay valid in ms
-  }));
+  secret: "fd34s@!@dfa453f3DF#$D&W", 
+  resave: false, 
+  saveUninitialized: true, 
+}));
 
 
 app.get("/isLoggedIn", function(req, res) {

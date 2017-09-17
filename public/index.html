@@ -20,22 +20,26 @@
   <div class="row center valign-wrapper">
 
     <!-- BEGIN LOGIN & SCHOOL SECTION -->
-    <div class="col l4">
+    <div class="col l12 step_one">
       <!-- GITHUB LOGIN BUTTON -->
       <a href="https://github.com/login/oauth/authorize?scope=user:email&client_id=8e29e22b346472922215" class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>Sign in with Github</a>
-
+      
       <!-- BEGIN SCHOOL SEARCH-FIELD -->
-      <div class="row">
+      <div class="row uni">
         <div class="input-field col s12 m12 l12">
           <input type="text" id="autocomplete-input-uniName"
             class="autocomplete-uniName" onclick="getUniversityName()" onchange="getUniversityName()">
           <label for="autocomplete-input-uniName">Your university</label>
         </div>
       </div> <!-- END SCHOOL SEARCH-FIELD -->
+
+      <a class="uni waves-effect waves-light btn">Continue</a>
+      
+      
     </div> <!-- BEGIN LOGIN & SCHOOL SECTION -->
 
     <!-- BEGIN ABOUT YOU COLLECTION -->
-    <div class="col l4">
+    <div class="col l12 step_two">
       <ul class="collection with-header">
 
         <li class="collection-header"><h4>About You</h4></li>
@@ -99,7 +103,7 @@
     </div> <!-- END ABOUT YOU COLLECCTION -->
 
     <!-- BEGIN PROJECTS COLLECTION -->
-    <div class="col l4">
+    <div class="col l12 step_three">
       <ul id="Collection">
 
         <!-- BEGIN PROJECT CARD TEMPLATE -->
@@ -167,7 +171,10 @@
 
   </div>
   </div> <!-- END CONTENT ROW -->
+  <script> 
 
+
+  </script>
   <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="

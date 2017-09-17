@@ -9,3 +9,12 @@
 #projectCardDifficulty1 {
 	font-size: 10px;
 }
+
+.step_two, .step_three {
+	display: none;
+}
+
+
+.uni {
+	margin-top: 2rem;
+}

@@ -5,7 +5,9 @@ $(document).ready(function() {
 
   $.get( "/isLoggedIn", function( data ) {
     if (data.session != null) {
-      $(".continue").show();
+      $(".github").hide()
+      $(".welcome").html("<h1> Welcome, " + data.session + "!</h1>");
+      $(".continue").fadeIn();
     }
   });
 

@@ -42,7 +42,7 @@ app.get("/confirmed", function(req, res) {
             "client_id":client_id,
             "client_secret":client_secret,
             "code":code,
-            "accept":json
+            "accept":"json"
         }
         }, function(data) {
             console.log(data);

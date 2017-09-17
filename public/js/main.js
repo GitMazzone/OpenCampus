@@ -3,7 +3,13 @@ $(document).ready(function() {
   $('.modal').modal();
 
 
-  $(".")
+  $.get( "/isLoggedIn", function( data ) {
+    if (data.session != null) {
+      $(".continue").show();
+    }
+  });
+
+
 });
 
 function getUniversityName() {

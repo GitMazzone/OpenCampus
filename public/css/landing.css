@@ -10,11 +10,14 @@
 	font-size: 10px;
 }
 
-.step_two, .step_three {
+.step_two, .step_three, .continue {
 	display: none;
 }
 
 
 .uni {
 	margin-top: 2rem;
+}
+.step_one {
+	margin-top: 20%;
 }

@@ -46,7 +46,9 @@ app.get("/confirmed", function(req, res) {
     }
     request.post(options, function(err, response, body) {
         if (err == null) {
-          var qs = {"access_token": JSON.parse(body).access_token};
+          console.log(body);
+          console.log(body.access_token);
+          var qs = {"access_token": body.access_token};
           var head = {
               name: 'User-Agent',
               value: 'Faliteren'

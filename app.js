@@ -11,10 +11,7 @@ var path = require("path");
 AWS.config.loadFromPath(path.resolve(__dirname,'config.json'));
 
 var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
-var params = {
-  TableName: 'User',
-  Key: {'Email': "anything"}
- };
+
 
  
 app.use(express.static('public'));
@@ -78,6 +75,11 @@ app.get("/confirmed", function(req, res) {
               req.openCookie.sess = user[0].email;
 
               //
+              var params = {
+                TableName: 'User',
+                Key: {'Email': "anything"}
+               };
+               
               docClient.get(params, function(err, data) {
                 if (err) {
                   console.log("Error", err);
@@ -85,9 +87,39 @@ app.get("/confirmed", function(req, res) {
                 } else {
                   console.log("Success", data.Item);
                   res.send(data.Item);
-                  
                 }
               });
+
+              var params = {
+                TableName: 'User',
+                Key: {'Email': "anying"}
+               };
+
+              docClient.get(params, function(err, data) {
+                if (err) {
+                  console.log("Error", err);
+                } else {
+                  console.log("Success", data.Item);
+                 
+                }
+              });
+
+              var params = {
+                TableName: 'User',
+                Item: {
+                  'Email': "varun.rama@gmail.com",
+                  'ears': '3'
+                }
+              };
+              
+              docClient.put(params, function(err, data) {
+                if (err) {
+                  console.log("Error", err);
+                } else {
+                  console.log("Success", data);
+                }
+              });
+
           })
         }
     });

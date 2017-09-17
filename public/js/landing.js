@@ -1,7 +1,9 @@
 $(document).ready(function() {
 	$("#submitButton").click(function() {
 		submitUserInfo();
+
 	})
+
 });
 
 
@@ -54,6 +56,10 @@ function submitUserInfo() {
 	
 	$.get( "/registerUser", userObj, function( data ) {
 		console.log(data.status);
+	});
+
+	$.get( "/projects", {school: uniNameSelected}, function( data ) {
+		console.log(data);
 	});
 }
 

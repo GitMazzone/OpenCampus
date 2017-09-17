@@ -166,8 +166,40 @@ io.on('connection', function (socket) {
   
 });
 
+app.get("/projects", function(req, res) {
+  var school = req.query.school;
+  if (school == undefined) {
+    res.send({status: 0});
+  } else {
+
+    queryProjects(school);
+  }
+})
 
 
+function queryProjects(school) {
+  var params = {
+    TableName : "Project",
+    KeyConditionExpression: "#sc = :sc",
+    ExpressionAttributeNames:{
+        "#sc": "School"
+    },
+    ExpressionAttributeValues: {
+        ":sc":school
+    }
+  };
+  docClient.query(params, function(err, data) {
+    if (err) {
+        console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
+    } else {
+        console.log("Query succeeded.");
+        data.Items.forEach(function(item) {
+            console.log(" -", item);
+        });
 
+        res.send(data.Items);
+    }
+  });
 
+}
 

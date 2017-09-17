@@ -10,10 +10,17 @@
 	font-size: 10px;
 }
 
-.step_two, .step_three, .continue {
-	display: none;
+.timeCommitmentBtns .btn {
+	margin-bottom: 10px;
 }
 
+.card {
+	text-align: left;
+}
+
+#projectCardDifficulty1 {
+	font-size: 10px;
+}
 
 .uni {
 	margin-top: 2rem;

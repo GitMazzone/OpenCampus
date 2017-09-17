@@ -17,8 +17,9 @@ function getUniversityName() {
   return universityName;
 }
 
+//TODO: now uses checkboxes
 function getProgrammingLanguage() {
-  var programmingLanguage = document.getElementById("autocomplete-input-progLang").value;
+  var programmingLanguage = document.getElementById("input-progLang").value;
   return programmingLanguage;
 }
 

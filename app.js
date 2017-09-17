@@ -71,16 +71,16 @@ app.get("/confirmed", function(req, res) {
             }, 
             qs:qs, 
             json:true}, function (e, r, user) {
-              req.openCookie.sess = user[0].email;
+              res.openCookie.sess = user[0].email;
               var params = {
                 TableName: 'User',
-                Key: {'Email': req.openCookie.sess}
+                Key: {'Email': res.openCookie.sess}
                };
 
               docClient.get(params, function(err, data) {
                 params = {
                   TableName: 'User',
-                  Item: {'Email': req.openCookie.sess}
+                  Item: {'Email': res.openCookie.sess}
                  };
                 if (err) {
                   console.log("Error", err);

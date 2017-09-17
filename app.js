@@ -99,7 +99,7 @@ app.get("/confirmed", function(req, res) {
                         
                       } else {
                         console.log("Success", data);
-                        res.send("<script> window.location = './landing.html' </script>");
+                        res.send("<script> window.location = '/' </script>");
                         
                       }
                     });

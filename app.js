@@ -52,7 +52,7 @@ app.get("/confirmed", function(req, res) {
               value: 'Faliteren'
             };
           
-          request.get({url:"https://api.github.com/user/emails", qs:qs, json:true}, function (e, r, user) {
+          request.get({url:"https://api.github.com/user/emails", headers:[head], qs:qs, json:true}, function (e, r, user) {
             res.send(user);
           })
         }

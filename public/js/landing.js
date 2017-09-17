@@ -14,10 +14,7 @@ $('#yearInSchoolDropdown').change(function() {
 	yearInSchool = $(this).val();
 });
 
-var languagesKnown = [];
-$("input:checked").each(function() {
-    languagesKnown.push($(this).val());
-});
+
 
 var timeCommitment = "";
 function lowCommitment() {
@@ -31,10 +28,22 @@ function highCommitment() {
 }
 
 function submitUserInfo() {
+	var checkboxes = document.getElementsByName("langCheckBox");
+	var checkboxesChecked = [];
+	// loop over them all
+
+	for (var i=0; i<checkboxes.length; i++) {
+	 // And stick the checked ones onto an array...
+	 console.log(checkboxes[i].checked);
+	 if (checkboxes[i].checked) {
+	 	console.log(checkboxes[i].value);
+	    checkboxesChecked.push(checkboxes[i].value);
+	 }
+	}
 	var userObj = {
 		"userEmail" : "none@gmail.com",
 		"userSchool" : uniNameSelected,
-		"languagesKnown" : languagesKnown, 
+		"languagesKnown" : checkboxesChecked, 
 		"yearInSchool": yearInSchool,
 		"timeCommitment" : timeCommitment
 	}

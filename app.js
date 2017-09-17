@@ -35,7 +35,7 @@ app.get("/confirmed", function(req, res) {
     var code = req.query.code;
 
     request.post("https://github.com/login/oauth/access_token",
-        {form:{
+        {body:{
             "client_id":client_id,
             "client_secret":client_secret,
             "code":code,

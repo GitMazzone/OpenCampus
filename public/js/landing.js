@@ -60,11 +60,8 @@ function submitUserInfo() {
 
 	$.get( "/projects", {school: uniNameSelected}, function( data ) {
 		console.log(data);
-		data["projectCardName"] = data["ProjectName"];
-		data["projectCardUniversity"] = data["School"];
-		data["projectCardAbout"] = "undefined" ;
-		data["projectCardLanguages"] = data["Languages"][0];
-		data["projectCardDifficulty"] = "Hard";
+
+		
 		populateProjectsArea(data);
 		
 	});
@@ -80,8 +77,25 @@ projectCardLanguages: 'Python',
 projectCardDifficulty: 'too ez' 
 */
 function populateProjectsArea(projectList) {
-	for(var i = 0; i < 5; i++) { 
-		createCardLI(i);
-		populateCard(i);
-	}
+	projectList.forEach(function(item) {
+
+		const markup = `
+		<li class="collection-item projectPreviewCard" id="${item.ProjectID}">
+		<div class=card blue-grey darken-1>
+			<div class="card-content">
+			  <span class="card-title" id="projectCardName1">
+			  ${item.ProjectName}
+				<span id="projectCardUniversity1">@ ${item.School}</span>
+				<span id="projectCardDifficulty1">Hard</span>
+			  </span>
+			  <p id="projectCardAbout1">Short Description</p>
+			</div>
+			<div class="card-action" id="projectCardLanguages1">
+			  <div class="chip" id="${item["Languages"][0]}">
+			  </div>
+			   </div>
+		 </div>
+		 </li>
+		`;
+	})
 }

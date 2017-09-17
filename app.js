@@ -6,6 +6,14 @@ var mongo
 var app = express()
 var port = process.env.PORT || 5000;
 var server = require('http').createServer(app);
+var AWS = require('aws-sdk');
+var path = require("path");
+AWS.config.loadFromPath(path.resolve(__dirname,'config.json'));
+
+var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
+
+
+ 
 app.use(express.static('public'));
 var io = require('socket.io')(server);
 
@@ -25,8 +33,14 @@ app.use(sessions({
   }));
 
 
+app.get("/isLoggedIn", function(req, res) {
+  if (req.openCookie.sess != null && req.openCookie.sess != undefined) {
+    res.send({"session":req.openCookie.sess});
+  } else {
+    res.send({"session":null});
+  }
 
-
+});
   
   
 app.get("/confirmed", function(req, res) {
@@ -34,18 +48,71 @@ app.get("/confirmed", function(req, res) {
 
     var code = req.query.code;
 
-    request.post("https://github.com/login/oauth/access_token",
-        {body:{
-            "client_id":client_id,
-            "client_secret":client_secret,
-            "code":code,
-            "accept":"json"
+    var options = {
+      "method" : "POST",
+      "url" : "https://github.com/login/oauth/access_token",
+      form : {
+        "client_id":client_id,
+        "client_secret":client_secret,
+        "code":code,
+        "accept":"json"
+      }
+    }
+    request.post(options, function(err, response, body) {
+        if (err == null) {
+          console.log(body);
+          console.log(body.split("&")[0].split("=")[1]);
+          var qs = {"access_token": body.split("&")[0].split("=")[1]};
+
+          request.get({
+            url:"https://api.github.com/user/emails", 
+            headers:{
+             'User-Agent':'Faliteren'
+            }, 
+            qs:qs, 
+            json:true}, function (e, r, user) {
+              req.openCookie.sess = user[0].email;
+              var params = {
+                TableName: 'User',
+                Key: {'Email': req.openCookie.sess}
+               };
+
+              docClient.get(params, function(err, data) {
+                if (err) {
+                  console.log("Error", err);
+
+                  res.send("Something went wrong!");
+                  
+                } else {
+                  console.log("Success", data.Item);
+                  if (data.Item.Email == req.openCookie.sess) {
+                    //existing
+                    //do nothing
+                    res.send("<script> window.location = './landing.html' </script>");
+
+                  } else {
+                    //add into db
+                    docClient.put(params, function(err, data) {
+                      if (err) {
+                        console.log("Error", err);
+                        res.send("Please try that again. Something went wrong!");
+                        
+                      } else {
+                        console.log("Success", data);
+                        res.send("<script> window.location = '/' </script>");
+                        
+                      }
+                    });
+                  }
+                }
+              });
+
+          })
         }
-        }, function(data) {
-            res.send(data);
-        });
+    });
    
 });
+
 
 
 

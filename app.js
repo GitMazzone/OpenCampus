@@ -58,7 +58,7 @@ app.get("/confirmed", function(req, res) {
             qs:qs, 
             json:true}, function (e, r, user) {
               console.log(user[0].email);
-              req.session.user = user[0].email;
+              req.openCookie.user = user[0].email;
           })
         }
     });

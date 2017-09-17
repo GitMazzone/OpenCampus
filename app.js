@@ -7,7 +7,7 @@ var app = express()
 var port = process.env.PORT || 5000;
 var server = require('http').createServer(app);
 var AWS = require('aws-sdk');
-
+var path = require("path");
 AWS.config.loadFromPath(path.resolve(__dirname,'config.json'));
 
 var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});

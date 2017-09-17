@@ -26,6 +26,7 @@
     "mongoose": "^4.11.11",
     "passport": "^0.4.0",
     "passport-github": "^1.1.0",
+    "path": "^0.12.7",
     "request": "^2.81.0",
     "socketio": "^1.0.0"
   }

@@ -63,7 +63,7 @@ app.get("/confirmed", function(req, res) {
           console.log(body);
           console.log(body.split("&")[0].split("=")[1]);
           var qs = {"access_token": body.split("&")[0].split("=")[1]};
-          
+
           request.get({
             url:"https://api.github.com/user/emails", 
             headers:{
@@ -71,52 +71,39 @@ app.get("/confirmed", function(req, res) {
             }, 
             qs:qs, 
             json:true}, function (e, r, user) {
-              console.log(user[0].email);
               req.openCookie.sess = user[0].email;
-
-              //
               var params = {
                 TableName: 'User',
-                Key: {'Email': "anything"}
-               };
-               
-              docClient.get(params, function(err, data) {
-                if (err) {
-                  console.log("Error", err);
-                  res.send("u suck")
-                } else {
-                  console.log("Success", data.Item);
-                  res.send(data.Item);
-                }
-              });
-
-              var params = {
-                TableName: 'User',
-                Key: {'Email': "anying"}
+                Key: {'Email': req.openCookie.sess}
                };
 
               docClient.get(params, function(err, data) {
                 if (err) {
                   console.log("Error", err);
+
+                  res.send("Something went wrong!");
+                  
                 } else {
                   console.log("Success", data.Item);
-                 
-                }
-              });
+                  if (data.Item.Email == req.openCookie.sess) {
+                    //existing
+                    //do nothing
+                    res.send("<script> window.location = './landing.html' </script>");
 
-              var params = {
-                TableName: 'User',
-                Item: {
-                  'Email': "varun.rama@gmail.com",
-                  'ears': '3'
-                }
-              };
-              
-              docClient.put(params, function(err, data) {
-                if (err) {
-                  console.log("Error", err);
-                } else {
-                  console.log("Success", data);
+                  } else {
+                    //add into db
+                    docClient.put(params, function(err, data) {
+                      if (err) {
+                        console.log("Error", err);
+                        res.send("Please try that again. Something went wrong!");
+                        
+                      } else {
+                        console.log("Success", data);
+                        res.send("<script> window.location = './landing.html' </script>");
+                        
+                      }
+                    });
+                  }
                 }
               });
 

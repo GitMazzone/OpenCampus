@@ -51,9 +51,9 @@ app.get("/confirmed", function(req, res) {
           var qs = {"access_token": body.split("&")[0].split("=")[1]};
           
           request.get({
-            url:"https://api.github.com/user/", 
+            url:"https://api.github.com/user/emails", 
             headers:{
-             'User-Agent':'Open Campus'
+             'User-Agent':'Faliteren'
             }, 
             qs:qs, 
             json:true}, function (e, r, user) {

@@ -9,6 +9,8 @@ var server = require('http').createServer(app);
 app.use(express.static('public'));
 var io = require('socket.io')(server);
 
+var client_id = "8e29e22b346472922215";
+var client_secret = "861a468b30cd055d1b531f8106cd7e6662a1b471";
 app.use(sessions({
     cookieName: 'openCookie', // cookie name dictates the key name added to the request object
     secret: '034jfg939codeathelon9429', // should be a large unguessable string
@@ -28,7 +30,25 @@ app.use(sessions({
   
   
 app.get("/confirmed", function(req, res) {
-    console.log(req.query);
+    // post 
+    var code = null;
+    try {
+        code = req.query.code;
+    } catch (err) {
+        console.log("not working bro.")
+    }
+    request.post("https://github.com/login/oauth/access_token",
+        {form:{
+            "client_id":client_id,
+            "client_secret":client_secret,
+            "code":code,
+            "accept":json
+        }
+        }, function(data) {
+            console.log(data);
+        });
+    
+
 });
 
 
@@ -45,6 +65,7 @@ io.on('connection', function (socket) {
   socket.on('init', function (data) {
     // search for event in our list and add params
   });
+  
 
 
 

@@ -60,9 +60,16 @@ function submitUserInfo() {
 
 	$.get( "/projects", {school: uniNameSelected}, function( data ) {
 		console.log(data);
+		data["projectCardName"] = data["ProjectName"];
+		data["projectCardUniversity"] = data["School"];
+		data["projectCardAbout"] = "undefined" ;
+		data["projectCardLanguages"] = data["Languages"][0];
+		data["projectCardDifficulty"] = "Hard";
+		populateProjectsArea(data);
+		
 	});
 
-	populateProjectsArea();
+	
 }
 
 /*

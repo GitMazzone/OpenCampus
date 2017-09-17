@@ -20,7 +20,6 @@ var io = require('socket.io')(server);
 var client_id = "8e29e22b346472922215";
 var client_secret = "861a468b30cd055d1b531f8106cd7e6662a1b471";
 app.use(sessions({
-    cookieName: 'openCookie', // cookie name dictates the key name added to the request object
     secret: '034jfg939codeathelon9429', // should be a large unguessable string
     duration: 24 * 60 * 60 * 1000, // how long the session will stay valid in ms
     cookie: {
@@ -34,8 +33,8 @@ app.use(sessions({
 
 
 app.get("/isLoggedIn", function(req, res) {
-  if (res.openCookie.sess != null && res.openCookie.sess != undefined) {
-    res.send({"session":req.openCookie.sess});
+  if (req.session.sess != null && req.session.sess != undefined) {
+    res.send({"session":req.session.sess});
   } else {
     res.send({"session":null});
   }
@@ -71,16 +70,16 @@ app.get("/confirmed", function(req, res) {
             }, 
             qs:qs, 
             json:true}, function (e, r, user) {
-              res.openCookie.sess = user[0].email;
+              req.session.sess = user[0].email;
               var params = {
                 TableName: 'User',
-                Key: {'Email': res.openCookie.sess}
+                Key: {'Email': req.session.sess}
                };
 
               docClient.get(params, function(err, data) {
                 params = {
                   TableName: 'User',
-                  Item: {'Email': res.openCookie.sess}
+                  Item: {'Email': req.session.sess}
                  };
                 if (err) {
                   console.log("Error", err);
@@ -103,7 +102,7 @@ app.get("/confirmed", function(req, res) {
                         
                       }
                     });
-                  } else if (data.Item.Email == res.openCookie.sess) {
+                  } else if (data.Item.Email == req.session.sess) {
                     //existing
                     //do nothing
                     res.send("<script> window.location = '/' </script>");

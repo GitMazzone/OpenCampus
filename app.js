@@ -1,8 +1,7 @@
 var express = require('express')
 var request = require('request')
-var sessions = require("client-sessions");
-var mongoose = require('mongoose');
-var mongo 
+// var sessions = require("client-sessions");
+var session = require('express-session')
 var app = express()
 var port = process.env.PORT || 5000;
 var server = require('http').createServer(app);
@@ -19,11 +18,12 @@ var io = require('socket.io')(server);
 
 var client_id = "8e29e22b346472922215";
 var client_secret = "861a468b30cd055d1b531f8106cd7e6662a1b471";
-app.use(sessions({
-  secret: "fd34s@!@dfa453f3DF#$D&W", 
-  resave: false, 
-  saveUninitialized: true, 
-}));
+// app.use(sessions({
+//   secret: "fd34s@!@dfa453f3DF#$D&W", 
+//   resave: false, 
+//   saveUninitialized: true, 
+// }));
+app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}))
 
 
 app.get("/isLoggedIn", function(req, res) {

@@ -34,7 +34,7 @@ app.use(sessions({
 
 
 app.get("/isLoggedIn", function(req, res) {
-  if (req.openCookie.sess != null && req.openCookie.sess != undefined) {
+  if (res.openCookie.sess != null && res.openCookie.sess != undefined) {
     res.send({"session":req.openCookie.sess});
   } else {
     res.send({"session":null});
@@ -103,7 +103,7 @@ app.get("/confirmed", function(req, res) {
                         
                       }
                     });
-                  } else if (data.Item.Email == req.openCookie.sess) {
+                  } else if (data.Item.Email == res.openCookie.sess) {
                     //existing
                     //do nothing
                     res.send("<script> window.location = '/' </script>");

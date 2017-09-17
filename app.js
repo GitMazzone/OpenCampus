@@ -85,6 +85,9 @@ app.get("/confirmed", function(req, res) {
                   
                 } else {
                   console.log("Success", data.Item);
+                  if (data.Item == undefined) {
+                    res.send("Something went wrong")
+                  }
                   if (data.Item.Email == req.openCookie.sess) {
                     //existing
                     //do nothing

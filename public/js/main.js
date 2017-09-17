@@ -23,8 +23,6 @@ function getProgrammingLanguage() {
   console.log("Programming language: " + programmingLanguage);
   return programmingLanguage;
 }
-<<<<<<< HEAD
-=======
 
 
 function loadMoreCards(){
@@ -94,7 +92,3 @@ const markup = `
    	</div>
  </div>
 `;
-
-
-
->>>>>>> 56544c9dd06c2371aa97e93c9a0fdc46ca45b209

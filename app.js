@@ -58,7 +58,7 @@ app.get("/confirmed", function(req, res) {
             url:"https://api.github.com/user/", 
             headers:{
               name: 'User-Agent',
-              value: 'Faliteren'
+              value: 'Open Campus'
             }, 
             qs:qs, 
             json:true}, function (e, r, user) {

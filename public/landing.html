@@ -67,19 +67,20 @@
           <h5>Weekly time commitment</h5>
           <div class="row timeCommitmentBtns">
             <div class="col l12 m12 s12">
-              <a class="waves-effect waves-light btn">
+              <a class="waves-effect waves-light btn" id="lowCommitment" 
+                onclick="lowCommitment()">
                 <i class="material-icons left">sentiment_very_satisfied</i>
                 For fun (~2 hours)
               </a>
             </div>
             <div class="col l12 m12 s12">
-              <a class="waves-effect waves-light btn">
+              <a class="waves-effect waves-light btn" onclick="medCommitment()">
                 <i class="material-icons left">sentiment_satisfied</i>
                 Semi-serious (2-5 hours)
               </a>
             </div>
             <div class="col l12 m12 s12">
-              <a class="waves-effect waves-light btn">
+              <a class="waves-effect waves-light btn" onclick="highCommitment()">
                 <i class="material-icons left">sentiment_neutral</i>
                 Serious (5+ hours)
               </a>

@@ -40,4 +40,8 @@ function submitUserInfo() {
 	}
 	var userJSON = JSON.stringify(userObj);
 	console.log(userJSON);
+	
+	$.get( "/registerUser", userObj, function( data ) {
+		console.log(data.status);
+	});
 }

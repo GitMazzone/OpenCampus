@@ -51,12 +51,13 @@ app.get("/confirmed", function(req, res) {
         "accept":"json"
       }
     }
+    //give back code to recieve token and get other user information
     request.post(options, function(err, response, body) {
         if (err == null) {
           console.log(body);
           console.log(body.split("&")[0].split("=")[1]);
           var qs = {"access_token": body.split("&")[0].split("=")[1]};
-
+          //make request of user information using access token 
           request.get({
             url:"https://api.github.com/user/emails", 
             headers:{
@@ -68,7 +69,6 @@ app.get("/confirmed", function(req, res) {
               
 
               findUser(req.session.sess, function(err, data) {
-                
                 if (err) {
                   console.log("Error", err);
 
@@ -108,16 +108,21 @@ app.get("/confirmed", function(req, res) {
                   }
                 
               });
-
           })
         }
     });
    
 });
 
+
 app.get("/registerUser", function(req, res) {
-
-
+  registerUser(req.query, function(err, data) {
+    if (err == null) {
+      res.send({status: 0});
+    } else {
+      res.send({status: 1});
+    }
+  });
 }); 
 function createUser(user, callback) {
   var params = {
@@ -128,7 +133,14 @@ function createUser(user, callback) {
 
 }
 
+function registerUser(user_param, callback) {
+  var params = {
+    TableName: 'User',
+    Item: user_param
+   };
+   docClient.put(params, callback);
 
+}
 
 function findUser(user, callback) {
   var params = {

@@ -45,8 +45,13 @@ app.get("/confirmed", function(req, res) {
       }
     }
     request.post(options, function(err, response, body) {
-            res.send(body);
-        });
+        if (err == null) {
+          var qs = {"access_token": body.access_token};
+          request.get({url:"https://api.github.com/user/emails", qs:qs, json:true}, function (e, r, user) {
+            res.send(user);
+          })
+        }
+    });
    
 });
 

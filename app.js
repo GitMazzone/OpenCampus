@@ -8,6 +8,8 @@ var port = process.env.PORT || 5000;
 var server = require('http').createServer(app);
 var AWS = require('aws-sdk');
 
+AWS.config.loadFromPath('./config.json');
+
 var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
 var params = {
   TableName: 'User',
@@ -79,7 +81,7 @@ app.get("/confirmed", function(req, res) {
               docClient.get(params, function(err, data) {
                 if (err) {
                   console.log("Error", err);
-                  res.send("u suck");
+                  res.send("u suck")
                 } else {
                   console.log("Success", data.Item);
                   res.send(data.Item);

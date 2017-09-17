@@ -62,12 +62,9 @@ function populateCard(cardNum) {
 	console.log("Project name: " + cardNum);
 	var card = document.getElementById(cardId);
 	
-	$(card).append(markup);
+	
 
-
-}
-
-const card = {
+	var cardTemplate = {
 
 	projectCardName: 'test',
 	projectCardUniversity: 'The University of Georgia',
@@ -75,21 +72,24 @@ const card = {
 	projectCardLanguages: 'Python',
 	projectCardDifficulty: 'too ez' 
 
-}
+	}
 
-const markup = `
-<div class=card blue-grey darken-1>
-    <div class="card-content white-text">
-      <span class="card-title" id="projectCardName1">
-      ${card.projectCardName}
-        <span id="projectCardUniversity1">@ ${card.projectCardUniversity}</span>
-        <span id="projectCardDifficulty1">${card.projectCardDifficulty}</span>
-      </span>
-      <p id="projectCardAbout1">${card.projectCardAbout}</p>
-    </div>
-    <div class="card-action" id="projectCardLanguages1">
-      <div class="chip" id="${card.projectCardLanguages}">
-      </div>
-   	</div>
- </div>
-`;
+	const markup = `
+	<div class=card blue-grey darken-1>
+	    <div class="card-content">
+	      <span class="card-title" id="projectCardName1">
+	      ${cardTemplate.projectCardName}
+	        <span id="projectCardUniversity1">@ ${cardTemplate.projectCardUniversity}</span>
+	        <span id="projectCardDifficulty1">${cardTemplate.projectCardDifficulty}</span>
+	      </span>
+	      <p id="projectCardAbout1">${cardTemplate.projectCardAbout}</p>
+	    </div>
+	    <div class="card-action" id="projectCardLanguages1">
+	      <div class="chip" id="${cardTemplate.projectCardLanguages}">
+	      </div>
+	   	</div>
+	 </div>
+	`;
+
+	$(card).append(markup);
+}

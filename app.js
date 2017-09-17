@@ -28,7 +28,7 @@ app.use(sessions({
   
   
 app.get("/confirmed", function(req, res) {
-    res.send(req);
+    console.log(req);
 });
 
 

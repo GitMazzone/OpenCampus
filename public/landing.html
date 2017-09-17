@@ -35,21 +35,17 @@
             </div>
           </div> <!-- END SCHOOL SEARCH-FIELD -->
         </li>
-
+        
         <!-- BEGIN yearInSchool DROPDOWN -->
         <li class="collection-item">
-          <div>
-            <!-- Dropdown Trigger -->
-            <a class='dropdown-button btn' href='#' data-activates='yearInSchoolDropdown'>
-              Year in School</a>
-            <ul id='yearInSchoolDropdown' class='dropdown-content'>
-              <li>First</li>
-              <li>Second</li>
-              <li>Third</li>
-              <li>Fourth +</li>
-              <li>Graduate</li>
-            </ul> 
-          </div>
+          <select id='yearInSchoolDropdown'>
+            <option value="" disabled selected>Years in school</option>
+            <option value="1">First</option>
+            <option value="2">Second</option>
+            <option value="3">Third</option>
+            <option value="4">Fourth +</option>
+            <option value="5">Graduate</option>
+          </select>
         </li> <!-- END yearInSchool DROPDOWN -->
 
         <!-- BEGIN PROGRAMMING LANGUAGES SEARCH-FIELD -->
@@ -91,6 +87,13 @@
             </div>
           </div>
         </li> <!-- END TIME COMMITMENT BUTTONS -->
+
+        <li class="collection-item">
+          <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            <i class="material-icons right">send</i>
+          </button>
+        </li>
+
       </ul>
     </div> <!-- END ABOUT YOU COLLECCTION -->
 
@@ -170,6 +173,7 @@
   crossorigin="anonymous"></script>
   <script type="text/javascript" src="js/materialize.min.js"></script>
   <script type="text/javascript" src="js/main.js"></script>
+  <script type="text/javascript" src="js/landing.js"></script>
   <script type="text/javascript" src="js/autocomplete.js"></script>
 </body>
 </html>

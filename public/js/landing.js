@@ -55,9 +55,20 @@ function submitUserInfo() {
 	$.get( "/registerUser", userObj, function( data ) {
 		console.log(data.status);
 	});
+
+	populateProjectsArea();
 }
 
-
-
-
-
+/*
+projectCardName: 'test',
+projectCardUniversity: 'The University of Georgia',
+projectCardAbout: 'A test card',
+projectCardLanguages: 'Python',
+projectCardDifficulty: 'too ez' 
+*/
+function populateProjectsArea(projectList) {
+	for(var i = 0; i < 5; i++) { 
+		createCardLI(i);
+		populateCard(i);
+	}
+}

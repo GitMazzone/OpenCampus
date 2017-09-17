@@ -30,25 +30,21 @@ app.use(sessions({
   
   
 app.get("/confirmed", function(req, res) {
-    // // post 
-    // var code = null;
-    // try {
-    //     code = req.query.code;
-    // } catch (err) {
-    //     console.log("not working bro.")
-    // }
-    // request.post("https://github.com/login/oauth/access_token",
-    //     {form:{
-    //         "client_id":client_id,
-    //         "client_secret":client_secret,
-    //         "code":code,
-    //         "accept":"json"
-    //     }
-    //     }, function(err, data) {
-    //         console.log(data);
-    //     });
-    console.log(req.query);
-    res.send(req.query);
+    // post 
+
+    var code = req.query.code;
+
+    request.post("https://github.com/login/oauth/access_token",
+        {body:{
+            "client_id":client_id,
+            "client_secret":client_secret,
+            "code":code,
+            "accept":"json"
+        }
+        }, function(data) {
+            res.send(data);
+        });
+   
 });
 
 

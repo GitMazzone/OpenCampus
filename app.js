@@ -6,6 +6,15 @@ var mongo
 var app = express()
 var port = process.env.PORT || 5000;
 var server = require('http').createServer(app);
+var AWS = require('aws-sdk');
+
+var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
+var params = {
+  TableName: 'User',
+  Key: {'Email': "anything"}
+ };
+
+ 
 app.use(express.static('public'));
 var io = require('socket.io')(server);
 
@@ -31,6 +40,7 @@ app.get("/isLoggedIn", function(req, res) {
   } else {
     res.send({"session":null});
   }
+
 });
   
   
@@ -64,7 +74,18 @@ app.get("/confirmed", function(req, res) {
             json:true}, function (e, r, user) {
               console.log(user[0].email);
               req.openCookie.sess = user[0].email;
-              res.send("<script> window.location = '/landing.html'</script>");
+
+              //
+              docClient.get(params, function(err, data) {
+                if (err) {
+                  console.log("Error", err);
+                  res.send("u suck");
+                } else {
+                  console.log("Success", data.Item);
+                  res.send(data.Item);
+                  
+                }
+              });
           })
         }
     });

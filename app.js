@@ -65,27 +65,18 @@ app.get("/confirmed", function(req, res) {
             qs:qs, 
             json:true}, function (e, r, user) {
               req.session.sess = user[0].email;
-              var params = {
-                TableName: 'User',
-                Key: {'Email': req.session.sess}
-               };
+              
 
-              docClient.get(params, function(err, data) {
-                params = {
-                  TableName: 'User',
-                  Item: {'Email': req.session.sess}
-                 };
+              findUser(req.session.sess, function(err, data) {
+                
                 if (err) {
                   console.log("Error", err);
 
                   res.send("Something went wrong!");
                   
-                } else {
-                  console.log("Success", data.Item);
-                  if (data.Item == undefined) {
-                    //add entry
-                    
-                    docClient.put(params, function(err, data) {
+                } else if (data.Item == undefined) {
+    
+                    createUser(req.session.sess, function(err, data) {
                       if (err) {
                         console.log("Error", err);
                         res.send("Please try that again. Something went wrong!");
@@ -103,7 +94,7 @@ app.get("/confirmed", function(req, res) {
 
                   } else {
                     //add into db
-                    docClient.put(params, function(err, data) {
+                    createUser(req.session.sess, function(err, data) {
                       if (err) {
                         console.log("Error", err);
                         res.send("Please try that again. Something went wrong!");
@@ -115,7 +106,7 @@ app.get("/confirmed", function(req, res) {
                       }
                     });
                   }
-                }
+                
               });
 
           })
@@ -125,7 +116,24 @@ app.get("/confirmed", function(req, res) {
 });
 
 
+function createUser(user, callback) {
+  var params = {
+    TableName: 'User',
+    Item: {'Email': user}
+   };
+   docClient.put(params, callback(err, data));
 
+}
+
+
+function findUser(user, callback) {
+  var params = {
+    TableName: 'User',
+    Key: {'Email': user}
+   };
+   docClient.get(params, callback(err, data));
+
+}
 
 
 server.listen(port, function () {
@@ -140,12 +148,6 @@ io.on('connection', function (socket) {
     // search for event in our list and add params
   });
   
-
-
-
-
-
-
 });
 
 

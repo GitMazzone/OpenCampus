@@ -1,36 +1,10 @@
-.timeCommitmentBtns .btn {
-	margin-bottom: 10px;
-}
-
-.card {
-	text-align: left;
-}
-
-#projectCardDifficulty1 {
-	font-size: 10px;
-}
-
-.timeCommitmentBtns .btn {
-	margin-bottom: 10px;
-}
-
-.card {
-	text-align: left;
-}
-
-#projectCardDifficulty1 {
-	font-size: 10px;
-}
-
-.uni {
-	margin-top: 2rem;
-}
-.step_one {
-	margin-top: 20%;
-}
-
-#progLangCheckboxesRow {
-	margin-bottom: 0;
+/* 
+ * ===============================
+ * BEGIN ABOUT YOU STYLING 
+ * ===============================
+*/
+.collection {
+	text-align: center;
 }
 
 #input-progLang label {
@@ -40,3 +14,36 @@
 [type="checkbox"]+label {
 	padding-left: 25px;
 }
+
+.timeCommitmentBtns .btn {
+	margin-bottom: 10px;
+	width: 225px;
+}
+
+#submitButton {
+	width: 150px;
+}
+/* 
+ * ===============================
+ * END ABOUT YOU STYLING 
+ * ===============================
+*/
+
+
+/* 
+ * ===============================
+ * BEGIN PROJECTS STYLING 
+ * ===============================
+*/
+.card {
+	text-align: left;
+}
+
+#projectCardDifficulty {
+	font-size: 10px;
+}
+/* 
+ * ===============================
+ * END PROJECTS STYLING 
+ * ===============================
+*/
